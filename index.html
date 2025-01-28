@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Company Homepage</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .image-slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .image-slider img {
+            width: 100%;
+            height: auto;
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .prev {
+            left: 0;
+        }
+
+        .next {
+            right: 0;
+        }
+
+        .tile-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .tile {
+            width: 48%; 
+            margin-bottom: 20px;
+            background-color: #f0f0f0;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="image-container">
+        <div class="image-slider">
+            <img src="image1.jpg" alt="Image 1">
+            <img src="image2.jpg" alt="Image 2">
+            <img src="image3.jpg" alt="Image 3">
+        </div>
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
+    </div>
+
+    <div class="tile-container">
+        <div class="tile">
+            <h3>Tile 1</h3>
+            <p>Some content for Tile 1</p>
+        </div>
+        <div class="tile">
+            <h3>Tile 2</h3>
+            <p>Some content for Tile 2</p>
+        </div>
+        <div class="tile">
+            <h3>Tile 3</h3>
+            <p>Some content for Tile 3</p>
+        </div>
+        <div class="tile">
+            <h3>Tile 4</h3>
+            <p>Some content for Tile 4</p>
+        </div>
+        <div class="tile">
+            <h3>Tile 5</h3>
+            <p>Some content for Tile 5</p>
+        </div>
+        <div class="tile">
+            <h3>Tile 6</h3>
+            <p>Some content for Tile 6</p>
+        </div>
+    </div>
+
+    <script>
+        const slider = document.querySelector('.image-slider');
+        const prevBtn = document.querySelector('.prev');
+        const nextBtn = document.querySelector('.next');
+        let currentIndex = 0;
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % slider.children.length;
+            slider.style.transform = `translateX(-${currentIndex * 100}%)`; 
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + slider.children.length) % slider.children.length; 
+            slider.style.transform = `translateX(-${currentIndex * 100}%)`; 
+        });
+    </script>
+
+</body>
+</html>
