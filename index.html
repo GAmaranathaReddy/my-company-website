@@ -3,152 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Company Homepage</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            margin: 0;
-        }
-
-        .nav-container {
-            width: 5%; 
-            position: fixed; 
-            top: 0;
-            left: 0;
-            height: 100vh;
-            background-color: #f0f0f0; 
-            display: flex;
-            flex-direction: column;
-            justify-content: center; 
-            align-items: center; 
-        }
-
-        .nav-item {
-            margin: 10px 0;
-            text-align: center;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: #333;
-        }
-
-        .active {
-            font-weight: bold;
-        }
-
-        .image-container {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .image-slider {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .image-slider img {
-            width: 100%;
-            height: auto;
-        }
-
-        .prev, .next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .prev {
-            left: 0;
-        }
-
-        .next {
-            right: 0;
-        }
-
-        .tile-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            padding: 20px;
-            margin-left: 5%; /* Adjust for navigation bar width */
-        }
-
-        .tile {
-            width: 48%; 
-            margin-bottom: 20px;
-            background-color: #f0f0f0;
-            padding: 20px;
-            text-align: center;
-        }
-    </style>
+    <title>Company Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="h-[5vh] bg-blue-600 text-white flex items-center justify-between px-6">
+        <h1 class="text-lg font-bold">Company</h1>
+        <nav>
+            <ul class="flex space-x-6">
+                <li class="group relative">
+                    <button class="hover:underline">Online Trainings</button>
+                    <ul class="absolute hidden group-hover:block bg-white text-black shadow-lg p-2">
+                        <li><a href="#" class="block p-2">Register</a></li>
+                    </ul>
+                </li>
+                <li class="group relative">
+                    <button class="hover:underline">Projects</button>
+                    <ul class="absolute hidden group-hover:block bg-white text-black shadow-lg p-2">
+                        <li><a href="#" class="block p-2">Register</a></li>
+                    </ul>
+                </li>
+                <li class="group relative">
+                    <button class="hover:underline">Customer Services</button>
+                    <ul class="absolute hidden group-hover:block bg-white text-black shadow-lg p-2">
+                        <li><a href="#" class="block p-2">Register</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
-    <div class="tile-container">
-        <div class="tile">
-            <h3>Tile 1</h3>
-            <p>Some content for Tile 1</p>
+    <!-- Image Carousel -->
+    <section class="h-[40vh] relative overflow-hidden">
+        <div class="flex transition-transform ease-in-out duration-500" id="carousel">
+            <img src="images/landingpage.jpeg" class="w-full h-full object-cover">
+            <img src="images/OnlineTrainings.jpeg" class="w-full h-full object-cover">
+            <img src="images/ConsultancyServices.jpeg" class="w-full h-full object-cover">
         </div>
-        <div class="tile">
-            <h3>Tile 2</h3>
-            <p>Some content for Tile 2</p>
-        </div>
-        <div class="tile">
-            <h3>Tile 3</h3>
-            <p>Some content for Tile 3</p>
-        </div>
-        <div class="tile">
-            <h3>Tile 4</h3>
-            <p>Some content for Tile 4</p>
-        </div>
-        <div class="tile">
-            <h3>Tile 5</h3>
-            <p>Some content for Tile 5</p>
-        </div>
-        <div class="tile">
-            <h3>Tile 6</h3>
-            <p>Some content for Tile 6</p>
-        </div>
-    </div>
+        <button onclick="prevSlide()" class="absolute left-2 top-1/2 bg-gray-800 text-white px-3 py-1">&#9665;</button>
+        <button onclick="nextSlide()" class="absolute right-2 top-1/2 bg-gray-800 text-white px-3 py-1">&#9655;</button>
+    </section>
 
-    <div class="nav-container">
-        <div class="nav-item">
-            <a href="#" class="nav-link active">Services</a>
-        </div>
-        <div class="nav-item">
-            <a href="#" class="nav-link">Trainings</a>
-        </div>
-        <div class="nav-item">
-            <a href="#" class="nav-link">Projects</a>
-        </div>
-        <div class="nav-item">
-            <a href="#" class="nav-link">Consultancy</a>
-        </div>
-    </div>
-    
-    <script>
-        const slider = document.querySelector('.image-slider');
-        const prevBtn = document.querySelector('.prev');
-        const nextBtn = document.querySelector('.next');
-        let currentIndex = 0;
+    <!-- Clickable Cards -->
+    <section class="h-[40vh] p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-white p-6 shadow-lg rounded-lg cursor-pointer">Card 1</div>
+        <div class="bg-white p-6 shadow-lg rounded-lg cursor-pointer">Card 2</div>
+        <div class="bg-white p-6 shadow-lg rounded-lg cursor-pointer">Card 3</div>
+        <div class="bg-white p-6 shadow-lg rounded-lg cursor-pointer">Card 4</div>
+    </section>
 
-        nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % slider.children.length;
-            slider.style.transform = `translateX(-${currentIndex * 100}%)`; 
-        });
-
-        prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + slider.children.length) % slider.children.length; 
-            slider.style.transform = `translateX(-${currentIndex * 100}%)`; 
-        });
-    </script>
+    <!-- Footer -->
+    <footer class="h-[10vh] bg-gray-800 text-white p-6 flex flex-col items-center justify-center">
+        <p>Contact: support@example.com</p>
+        <p>Partners: Company A, Company B</p>
+    </footer>
 
 </body>
 </html>
